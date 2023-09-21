@@ -180,6 +180,7 @@ nav ul li a:hover::after {
 
 .work img{
     width: 100%;
+    height: auto;
     border-radius: 10px;
     display: block;
     transition: transform 0.5s;
@@ -247,11 +248,11 @@ nav ul li a:hover::after {
 
 /* ----------------- contact ----------------- */
 .contact-left {
-    flex-basis: 35%;
+    flex-basis: 60%;
 }
 
 .contact-right {
-    flex-basis: 60%;
+    flex-basis: 35%;
 }
 
 .contact-left p {
@@ -265,15 +266,47 @@ nav ul li a:hover::after {
 }
 
 .social-icons {
-    margin-top: 30px;
+    padding-top: 95px;
 }
 
 .social-icons a {
     text-decoration: none;
     font-size: 30px;
-    margin-right: 15px;
     color: #1e1ed3;
     display: inline-block;
+    padding-top: 20px;
+}
+
+#form-container {
+    background-color: #444; /* Darker background color */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Box shadow for depth */
+    text-align: center;
+    width: 300px;
+  }
+
+input[type="text"],
+input[type="email"],
+textarea,
+button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  background-color: #555; /* Slightly lighter background color */
+  color: #fff; /* Text color */
+}
+
+button {
+    background-color: #1e1ed3; /* Accent color for button */
+    cursor: pointer;
+}
+
+textarea {
+    resize: none;
+    height: 200px;
 }
 
 /* ----------------- css for mobile ----------------- */

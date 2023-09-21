@@ -12,7 +12,7 @@
     <div id="header">
         <div class="container">
             <nav>
-                <img src="images/logo.png" class="logo">
+                <!-- <img src="images/logo.png" class="logo"> -->
                 <ul>
                     <li><a href='#header'>Home</a></li>
                     <li><a href='#about'>About</a></li>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="about-col-2">
                     <h1 class="sub-title">About Me</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae sit atque nesciunt error fuga distinctio soluta magnam delectus molestias, voluptate suscipit voluptas facere, pariatur aspernatur nam quos aperiam cupiditate sunt?</p>
+                    <p>I am currently a junior at Florida State University. I am passionate in learning new technologies and creating an impact in the realm of software development.</p>
                     <div class="tab-titles">
                         <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
                         <p class="tab-links" onclick="opentab('experience')">Experience</p>
@@ -46,7 +46,7 @@
                     <div class="tab-contents active-tab" id="skills">
                         <ul>
                             <li><span>Languages</span><br>C++, JavaScript/TypeScript, HTML/CSS, Python</li>
-                            <li><span>Developer Tools:</span><br>Linux, Git, Supabase</li>
+                            <li><span>Developer Tools:</span><br>Linux, Git, Supabase, Terraform, AWS Lambda</li>
                             <li><span>Other:</span><br>Unreal Engine</li>
                         </ul>
                     </div>
@@ -71,31 +71,31 @@
             <h1 class="sub-title">Projects</h1>
             <div class="work-list">
                 <div class="work">
-                    <img src="images/headshot.jpeg">
+                    <img src="images/project1.png">
                     <div class="layer">
-                        <h3>Project 1</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
-                        <a href="#"><i class="fa-solid fa-link"></i></a>
+                        <h3>Inventory System</h3>
+                        <p>C++, Unreal Engine</p>
+                        <a href="https://github.com/evanrudd/InventorySystem/tree/main" target="_blank"><i class="fa-solid fa-link"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/project2.png">
+                    <div class="layer">
+                        <h3>Form Submission Processor</h3>
+                        <p>Terraform, AWS Lambda, Python, HTML/CSS</p>
+                        <a href="https://github.com/evanrudd/Form-Submission-Processor" target="_blank"><i class="fa-solid fa-link"></i></a>
                     </div>
                 </div>
                 <div class="work">
                     <img src="images/headshot.jpeg">
                     <div class="layer">
-                        <h3>Project 2</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
-                        <a href="#"><i class="fa-solid fa-link"></i></a>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="images/headshot.jpeg">
-                    <div class="layer">
-                        <h3>Project 3</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
-                        <a href="#"><i class="fa-solid fa-link"></i></a>
+                        <h3>Magnesis Demonstration</h3>
+                        <p>C++, Unreal Engine</p>
+                        <a href="https://github.com/evanrudd/Magnesis-Demo", target="_blank"><i class="fa-solid fa-link"></i></a>
                     </div>
                 </div>
             </div>
-            <a href="#" class="btn">See more</a>
+            <!-- <a href="#" class="btn">See more</a> -->
         </div>
     </div>
 
@@ -105,13 +105,22 @@
             <div class="row">
                 <div class="contact-left">
                     <h1 class="sub-title">Contact Me</h1>
-                    <p><i class="fa-solid fa-paper-plane"></i>evanrudd02@gmail.com</p>
-                    <div class="social-icons">
-                        <a href="https://github.com/evanrudd" target="_blank"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/evan-rudd-4a48231b9/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <div class="contact-form">
+                        <form id="contact-form" method="post">
+                            <input type="text" name="name" placeholder="Name">
+                            <input type="email" name="email" placeholder="Email">
+                            <textarea name="message" placeholder="Message"></textarea>
+                           <button type="submit">Submit</button>
+                        </form>
                     </div>
                 </div>
-                <div class="contact-right"></div>
+                <div class="contact-right">
+                    <div class="social-icons">
+                        <p><a href="mailto:evanrudd02@gmail.com" target="_blank"><i class="fa-solid fa-paper-plane"></i> evanrudd02@gmail.com</a></p>
+                        <p><a href="https://github.com/evanrudd" target="_blank"><i class="fa-brands fa-github"></i> evanrudd</a></p>
+                        <p><a href="https://www.linkedin.com/in/evan-rudd-4a48231b9/" target="_blank"><i class="fa-brands fa-linkedin"></i> Evan Rudd</a></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -130,6 +139,45 @@
             document.getElementById(tabname).classList.add("active-tab");
             event.currentTarget.classList.add("active-link");
         }
-    </script>
+
+        document.getElementById("contact-form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+    
+            // Collect form data
+            var formData = {
+                name: document.getElementsByName("name")[0].value,
+                email: document.getElementsByName("email")[0].value,
+                message: document.getElementsByName("message")[0].value,
+            };
+    
+            // Make a POST request to your API Gateway endpoint
+            fetch("https://hnwmvhli4g.execute-api.us-east-1.amazonaws.com/ContactFormProcessor", {
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then(function (data) {
+                // Handle the response from the Lambda function here
+                console.log(data);
+                alert("Form submitted successfully!");
+
+                document.getElementsByName("name")[0].value = "";
+                document.getElementsByName("email")[0].value = "";
+                document.getElementsByName("message")[0].value = "";
+            })
+            .catch(function (error) {
+                console.error("There was a problem with the fetch operation:", error);
+                alert("Form submission failed. Please try again later.");
+            });
+        });
+    </script>    
 </body>
 </html>
